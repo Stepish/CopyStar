@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* Общие настройки */
+@font-face {
+    font-family: myfont;
+    src: url("../fonts/Comfortaa-Regular.ttf");
+}
+
+
+body {
+    width: 90vw;
+    margin: auto;
+    font-family: myfont;
+    font-size: 1.6vw;
+    background-color: #EBEBEB;
+}
+
+header, nav, section, h1, h2 {
+    margin: 2vw 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 7vw;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.7vw;
+}
+
+p {
+    font-size: 1.5vw;
+}
+
+.flexbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.images {
+    width: 100%;
+    display: block;
+    margin: 1vw auto;
+}
+
+.button {
+    display: block;
+    font-family: myfont;
+    margin: 1vw auto;
+    padding: 1vw 3vw;
+    border-radius: 2vw;
+    background-color: #D8D8D8;
+}
+
+/* Шапка сайта */
+header img {
+    height: 16vw;
+}
+
+/* Навигация */
+.menu>* {
+    padding: 1vw 3vw;
+    border-radius: 1vw;
+    color: black;
+}
+
+.active {
+    font-weight: bold;
+    border-top: 2px solid black;
+}
+
+/* Слайдер */
+.slider {
+    width: 70vw;
+    height: 54vw;
+    background-image: url('../image/image.png');
+    background-size: contain;
+
+}
+
+#left, #right {
+    height: 5vw;
+}
+
+/* Главная */
+.main {
+    display: grid;
+    gap: 2vw;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+/* Каталог */
+.catalog {
+    display: grid;
+    gap: 2vw;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.products {
+    grid-column: span 3;
+}
+
+/* Товар */
+.product {
+    grid-column: 3/11;
+}
+
+.product p {
+    font-size: 1.6vw;
+}
+
+/* Контакты */
+.contact {
+    display: grid;
+    gap: 2vw;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.info>* {
+    margin: 1vw 0;
+}
+
+iframe {
+    width: 60vw;
+    height: 45vw;
+    border: 0;
+}
+
+/* Авторизация и регистрация */
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form>* {
+    padding: 0.5vw;
+    margin: 0.5vw;
+    font-family: myfont;
+    font-size: 1.6vw;
+}
+
+.error {
+    color: red;
+    border: 1px solid red;
+}
+
+#error {
+    display: none;
+}
+
+/* Личный кабинет и корзина*/
+.order {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+.order>* {
+    grid-column: span 3;
+}
+.orders img {
+    width: 6vw;
+}
+
