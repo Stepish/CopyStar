@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 11 2022 г., 12:02
--- Версия сервера: 5.7.33-log
--- Версия PHP: 8.0.14
+-- Время создания: Май 18 2022 г., 02:14
+-- Версия сервера: 5.7.33
+-- Версия PHP: 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,6 +53,20 @@ CREATE TABLE `custom_products` (
   `countnumber` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `custom_products`
+--
+
+INSERT INTO `custom_products` (`order_id`, `product_id`, `countnumber`) VALUES
+(1, 3, 5),
+(1, 7, 4),
+(1, 4, 4),
+(1, 2, 5),
+(1, 3, 7),
+(1, 2, 7),
+(2, 3, 4),
+(2, 4, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +80,14 @@ CREATE TABLE `orders` (
   `status` int(1) NOT NULL DEFAULT '0',
   `time` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `name`, `status`, `time`) VALUES
+(1, 2, 'Заказ 12345', 0, '2022-05-16 20:18:34'),
+(2, 2, 'Заказ 12346', 0, '2022-05-17 20:18:34');
 
 -- --------------------------------------------------------
 
@@ -82,9 +104,22 @@ CREATE TABLE `products` (
   `year` date NOT NULL,
   `model` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` int(10) NOT NULL,
-  `countnumber` int(10) NOT NULL,
+  `countnumbers` int(10) NOT NULL,
   `timestamp` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `photo`, `price`, `country`, `year`, `model`, `category`, `countnumbers`, `timestamp`) VALUES
+(1, 'Epson L805', 'image.png', 26700, 'Китай', '2019-05-09', 'L805', 1, 23, '2022-04-01 18:22:12'),
+(2, 'Epson L845', 'image.png', 24700, 'Китай', '2019-05-10', 'L845', 1, 23, '2022-04-24 18:22:12'),
+(3, 'Epson L345', 'image.png', 23700, 'Китай', '2019-05-13', 'L345', 1, 33, '2022-04-23 18:22:12'),
+(4, 'Xerox Phaser', 'image.png', 13700, 'Китай', '2019-05-03', '3020Bl', 2, 13, '2022-04-17 18:22:12'),
+(5, 'Xerox Phaser2', 'image.png', 15700, 'Китай', '2019-05-05', '3025Bl', 2, 15, '2022-04-15 18:22:12'),
+(6, 'Brother', 'image.png', 11700, 'Корея', '2019-05-25', '3225B2', 3, 35, '2022-04-12 18:22:12'),
+(7, 'Brother5', 'image.png', 11500, 'Корея', '2019-05-25', '3555B2', 3, 5, '2022-04-15 18:22:12');
 
 -- --------------------------------------------------------
 
@@ -101,6 +136,14 @@ CREATE TABLE `users` (
   `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `surname`, `patronymic`, `login`, `email`, `password`) VALUES
+(1, 'Иван', 'Иванов', 'Иванович', 'Admin', 'admin@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b'),
+(2, 'Петр', 'Петров', 'Петрович', 'User', 'user@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b');
 
 --
 -- Индексы сохранённых таблиц
@@ -153,19 +196,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
