@@ -28,13 +28,13 @@ session_start();
     $result = mysqli_query($con, "SELECT * FROM `products` ORDER BY  `timestamp` DESC LIMIT 5");
     echo "<section class='main'>";
     while ($row = mysqli_fetch_object($result)) {
-        echo  "<article class='new'>" .
-            "<h2>" . $row->name . "</h2>" .
-            "<a href='product.php?id=$row->id'><img src='image/" . $row->photo . "' alt='product' class='images'></a>" .
-            "<form action=''>
-            <input type='hidden' value='1'>
-            <input type='button' value='В корзину' class='button'>
-        </form></article>";
+        echo  "<article class='new'>";
+        echo "<h2>" . $row->name . "</h2>";
+        echo "<a href='product.php?id=$row->id'><img src='image/" . $row->photo . "' alt='product' class='images'></a>";
+        echo "<form action=''>";
+        echo "<input type='hidden' value='1'>";
+        echo "<input type='button' value='В корзину' class='button'>";
+        echo "</form></article>";
     };
     echo "</section>";
     ?>

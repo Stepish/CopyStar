@@ -21,20 +21,20 @@ session_start();
     $result = mysqli_query($con, "SELECT * FROM `products` WHERE `id`=$id_product");
     echo "<section class='catalog'>";
     while ($row = mysqli_fetch_object($result)) {
-        echo  "<article class='product'>" .
-            "<h2>" . $row->name . "</h2>" .
-            "<br><img src='image/" . $row->photo . "' alt='product' class='images'>" .
-            '<br><p>Цена: <b>' . $row->price . ' &#8381;</b></p>' .
-            '<br><p>Призводитель: <b>' . $row->country . '</b></p>' .
-            '<br><p>Производство: <b>' . $row->year . '</b></p>' .
-            '<br><p>Модель: <b>' . $row->model . '</b></p>' .
-            '<br><p>Категория: <b>' . $row->category . '</b></p>' .
-            '<br><p>Количество: <b>' . $row->countnumber . '</b></p>' .
-            '<br><p>Добавлено: <b>' . $row->timestamp . '</b></p>' .
-            "<br><form action=''>
-            <input type='hidden' value='$row->id'>
-            <input type='button' value='В корзину' class='button'>
-        </form></article>";
+        echo  "<article class='product'>";
+        echo "<h2>$row->name</h2>";
+        echo "<a href='product.php?id=$row->id'><img src='image/$row->photo' alt='product' class='images'></a>";
+        echo "<p>Цена: <b>$row->price &#8381;</b></p>";
+        echo "<p>Призводитель: <b>$row->country</b></p>";
+        echo "<p>Производство: <b>$row->year</b></p>";
+        echo "<p>Модель: <b>$row->model</b></p>";
+        echo "<p>Категория: <b>$row->category</b></p>";
+        echo "<p>Количество: <b>$row->countnumbers</b></p>";
+        echo "<p>Добавлено: <b>$row->timestamp</b></p>";
+        echo "<form action=''>";
+        echo "<input type='hidden' value=$row->id>";
+        echo "<input type='button' value='В корзину' class='button'>";
+        echo "</form></article>";
     };
     echo "</section>";
     ?>

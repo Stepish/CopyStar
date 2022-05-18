@@ -38,6 +38,7 @@ h2 {
 
 p {
     font-size: 1.5vw;
+    margin: 1vw 0;
 }
 
 .flexbox {
@@ -114,10 +115,6 @@ header img {
     grid-column: 3/11;
 }
 
-.product p {
-    font-size: 1.6vw;
-}
-
 /* Контакты */
 .contact {
     display: grid;
@@ -127,12 +124,13 @@ header img {
 
 .info>* {
     margin: 1vw 0;
+    
 }
 
 iframe {
     width: 60vw;
     height: 45vw;
-    border: 0;
+    border: 2px solid #D8D8D8;
 }
 
 /* Авторизация и регистрация */

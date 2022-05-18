@@ -26,7 +26,7 @@ session_start();
         <input type="email" required placeholder="email" name="email" id="email" class="validate">
         <input type="password" required placeholder="Пароль" name="password" id="password" class="validate">
         <input type="password" required placeholder="Повтор пароля" name="confirm" id="confirm" class="validate">
-        <label><input type="checkbox" id="check"> Согласие на обработку</label>
+        <label><input type="checkbox" id="check"> Согласие с правилами</label>
         <button class="button">Зарегистрироваться</button>
         <p class="error" id="error"></p>
     </form>
