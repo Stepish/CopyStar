@@ -124,7 +124,7 @@ header img {
 
 .info>* {
     margin: 1vw 0;
-    
+
 }
 
 iframe {
@@ -162,10 +162,31 @@ form>* {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
 }
-.order>* {
-    grid-column: span 3;
-}
+
 .orders img {
-    width: 6vw;
+    width: 10vw;
 }
 
+.item1 {
+    display: flex;
+    justify-content: space-between;
+    grid-column: span 12;
+    border-top: 1px solid black;
+}
+.item1 form{
+    flex-direction: row;
+}
+.item2 {
+
+    grid-column: span 4;
+}
+
+.item3 {
+
+    grid-column: span 5;
+}
+
+.item4 {
+
+    grid-column: span 3;
+}

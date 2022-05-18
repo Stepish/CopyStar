@@ -15,15 +15,16 @@ session_start();
 <body>
     <?php
     include 'php/nav.php';
-    nav('admin.php');
-    if ($_SESSION['login'] == 'Admin') {
+    nav('basket.php');
+    if (!empty($_SESSION)) {
         include 'php/db.php';
         $sql = "SELECT orders.id,orders.name AS orders_name,orders.status,custom_products.countnumber,products.name AS products_name,products.photo,products.price,products.country,products.year,products.model,products.timestamp,products.countnumbers,categories.name AS categories_name
         FROM `orders`,`products`,`custom_products`,`categories`
         WHERE orders.id=`order_id` 
         AND products.id=`product_id` 
         AND categories.id=products.category
-        AND orders.status>0
+        AND orders.user_id=$_SESSION[userid]
+        AND orders.status=0
         ORDER BY orders.id";
         $result = mysqli_query($con, $sql);
         echo "<section class='orders'>";
@@ -33,20 +34,10 @@ session_start();
             if ($order_name != $row->orders_name) {
                 echo "<div class='item1'><h2>Заказ: $row->orders_name";
                 $order_name = $row->orders_name;
-                if ($row->status == 1) {
-                    echo "(Новый)</h2>";
-                } elseif ($row->status == 2) {
-                    echo "(Отменен)</h2>";
-                } elseif ($row->status == 3) {
-                    echo "(Подтвержден)</h2>";
-                } else {
-                    echo "(В корзине)</h2>";
-                };
+                echo "(В корзине)</h2>";
                 echo "<form action='' name='order'>";
                 echo "<input type='hidden' value=$row->id>";
-                echo "<input type='button' value='Удалить' class='button'>";
-                echo "<input type='button' value='Отменить' class='button'>";
-                echo "<input type='button' value='Подтвердить' class='button'>";
+                echo "<input type='button' value='Оформить заказ' class='button'>";
                 echo "</form></div>";
             };
             echo "<div class='item2'><h2>$row->products_name</h2>";
@@ -60,10 +51,12 @@ session_start();
             echo "<p>Цена: <b>$row->price &#8381;</b></p></div>";
             echo "</article>";
         };
+
         echo "</section>";
     } else {
-        echo "Вы должны быть администратором";
+        echo "Вы должны быть авторизованы!";
     }
+
     ?>
 </body>
 
