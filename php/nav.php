@@ -13,11 +13,12 @@ function nav($item)
     } elseif ($_SESSION['login'] == 'Admin') {
         $items = [
             "index.php" => "О нас",
+            "catalog.php" => "Каталог",
             "user.php" => "Заявления",
             "admin.php" => "Администрирование",
             "php/logout.php" => "Выход"
         ];
-        $welcome = "Гость";
+        $welcome = "Администратор";
     } else {
         $items = [
             "index.php" => "Онас",
@@ -27,7 +28,7 @@ function nav($item)
             "basket.php" => "Корзина",
             "php/logout.php" => "Выход"
         ];
-        $welcome = "Гость";
+        $welcome = "Пользователь";
     }
 ?>
     <header class="flexbox">
@@ -36,7 +37,7 @@ function nav($item)
             <h1>"Copy Star"</h1>
             <h2>продажа копировального оборудования. Наша компания самая-самая лучшая</h2>
             <?php
-            echo "<p>Добро пожаловать, <b>$welcome!</b></p>"
+            echo "<p>Вы вошли как <b>$welcome.</b></p>"
             ?>
         </article>
     </header>

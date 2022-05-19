@@ -19,7 +19,7 @@ session_start();
     include 'php/db.php';
     $id_product = $_GET['id'];
     $result = mysqli_query($con, "SELECT * FROM `products` WHERE `id`=$id_product");
-    echo "<section class='catalog'>";
+    echo "<section class='catalog gridbox'>";
     while ($row = mysqli_fetch_object($result)) {
         echo  "<article class='product'>";
         echo "<h2>$row->name</h2>";

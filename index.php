@@ -26,7 +26,7 @@ session_start();
     <?php
     include 'php/db.php';
     $result = mysqli_query($con, "SELECT * FROM `products` ORDER BY  `timestamp` DESC LIMIT 5");
-    echo "<section class='main'>";
+    echo "<section class='main gridbox'>";
     while ($row = mysqli_fetch_object($result)) {
         echo  "<article class='new'>";
         echo "<h2>" . $row->name . "</h2>";

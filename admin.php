@@ -18,47 +18,22 @@ session_start();
     nav('admin.php');
     if ($_SESSION['login'] == 'Admin') {
         include 'php/db.php';
-        $sql = "SELECT orders.id,orders.name AS orders_name,orders.status,custom_products.countnumber,products.name AS products_name,products.photo,products.price,products.country,products.year,products.model,products.timestamp,products.countnumbers,categories.name AS categories_name
-        FROM `orders`,`products`,`custom_products`,`categories`
-        WHERE orders.id=`order_id` 
-        AND products.id=`product_id` 
-        AND categories.id=products.category
-        AND orders.status>0
-        ORDER BY orders.id";
+        $sql = "SELECT * FROM `categories`";
         $result = mysqli_query($con, $sql);
-        echo "<section class='orders'>";
-        $order_name = "";
+        echo "<section class='categories gridbox'>";
+        echo "<div class='newcategory'>";
+        echo "<form action='' name='order'>";
+        echo "<input type='button' value='Добавить новую категорию' class='button'>";
+        echo "</form></div>";
+        echo "</div>";
         while ($row = mysqli_fetch_object($result)) {
-            echo  "<article class='order'>";
-            if ($order_name != $row->orders_name) {
-                echo "<div class='item1'><h2>Заказ: $row->orders_name";
-                $order_name = $row->orders_name;
-                if ($row->status == 1) {
-                    echo "(Новый)</h2>";
-                } elseif ($row->status == 2) {
-                    echo "(Отменен)</h2>";
-                } elseif ($row->status == 3) {
-                    echo "(Подтвержден)</h2>";
-                } else {
-                    echo "(В корзине)</h2>";
-                };
-                echo "<form action='' name='order'>";
-                echo "<input type='hidden' value=$row->id>";
-                echo "<input type='button' value='Удалить' class='button'>";
-                echo "<input type='button' value='Отменить' class='button'>";
-                echo "<input type='button' value='Подтвердить' class='button'>";
-                echo "</form></div>";
-            };
-            echo "<div class='item2'><h2>$row->products_name</h2>";
-            echo "<a href='product.php?id=$row->id'><img src='image/$row->photo' alt='product' class='images'></a></div>";
-            echo "<div class='item3'><p>Производитель: <b>$row->country</b></p>";
-            echo "<p>Производство: <b>$row->year</b></p>";
-            echo "<p>Модель: <b>$row->model</b></p>";
-            echo "<p>Категория: <b>$row->categories_name</b></p>";
-            echo "<p>Добавлено: <b>$row->timestamp</b></p></div>";
-            echo "<div class='item4'><p>Количество: <b>$row->countnumber</b></p>";
-            echo "<p>Цена: <b>$row->price &#8381;</b></p></div>";
-            echo "</article>";
+            echo  "<div class='category'>";
+            echo "<h2>$row->name</h2>";
+            echo "<form action='' name='order'>";
+            echo "<input type='hidden' value=$row->id>";
+            echo "<input type='button' value='Удалить' class='button'>";
+            echo "</form></div>";
+            echo "</div>";
         };
         echo "</section>";
     } else {

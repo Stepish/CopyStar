@@ -38,6 +38,7 @@ session_start();
                 echo "<form action='' name='order'>";
                 echo "<input type='hidden' value=$row->id>";
                 echo "<input type='button' value='Оформить заказ' class='button'>";
+                echo "<input type='button' value='Очистить корзину' class='button'>";
                 echo "</form></div>";
             };
             echo "<div class='item2'><h2>$row->products_name</h2>";

@@ -47,6 +47,12 @@ p {
     align-items: center;
 }
 
+.gridbox {
+    display: grid;
+    gap: 2vw;
+    grid-template-columns: repeat(12, 1fr);
+}
+
 .images {
     width: 100%;
     display: block;
@@ -85,7 +91,6 @@ header img {
     height: 54vw;
     background-image: url('../image/image.png');
     background-size: contain;
-
 }
 
 #left, #right {
@@ -94,16 +99,12 @@ header img {
 
 /* Главная */
 .main {
-    display: grid;
-    gap: 2vw;
     grid-template-columns: repeat(5, 1fr);
 }
 
 /* Каталог */
 .catalog {
-    display: grid;
-    gap: 2vw;
-    grid-template-columns: repeat(12, 1fr);
+    gap: 1vw;
 }
 
 .products {
@@ -117,14 +118,11 @@ header img {
 
 /* Контакты */
 .contact {
-    display: grid;
-    gap: 2vw;
     grid-template-columns: repeat(2, 1fr);
 }
 
 .info>* {
     margin: 1vw 0;
-
 }
 
 iframe {
@@ -134,12 +132,16 @@ iframe {
 }
 
 /* Авторизация и регистрация */
+.form {
+    margin-top: 3vw;
+    grid-column: 5/9;
+}
+
 form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-}
+  }
 
 form>* {
     padding: 0.5vw;
@@ -173,9 +175,11 @@ form>* {
     grid-column: span 12;
     border-top: 1px solid black;
 }
-.item1 form{
+
+.item1 form {
     flex-direction: row;
 }
+
 .item2 {
 
     grid-column: span 4;
@@ -189,4 +193,8 @@ form>* {
 .item4 {
 
     grid-column: span 3;
+}
+/* Администрирование */
+.newcategory{
+    grid-column: span 12;
 }

@@ -26,6 +26,16 @@ session_start();
         AND orders.user_id=$_SESSION[userid]
         AND orders.status>0
         ORDER BY orders.id";
+        if ($_SESSION['login'] == 'Admin') {
+            $sql = "SELECT orders.id,orders.name AS orders_name,orders.status,custom_products.countnumber,products.name AS products_name,products.photo,products.price,products.country,products.year,products.model,products.timestamp,products.countnumbers,categories.name AS categories_name
+            FROM `orders`,`products`,`custom_products`,`categories`
+            WHERE orders.id=`order_id` 
+            AND products.id=`product_id` 
+            AND categories.id=products.category
+            AND orders.status>0
+            ORDER BY orders.id";
+        }
+
         $result = mysqli_query($con, $sql);
         echo "<section class='orders'>";
         $order_name = "";
@@ -39,13 +49,15 @@ session_start();
                     echo "<form action='' name='order'>";
                     echo "<input type='hidden' value=$row->id>";
                     echo "<input type='button' value='Удалить' class='button'>";
+                    if ($_SESSION['login'] == 'Admin') {
+                        echo "<input type='button' value='Отменить' class='button'>";
+                        echo "<input type='button' value='Подтвердить' class='button'>";
+                    };
                     echo "</form></div>";
                 } elseif ($row->status == 2) {
                     echo "(Отменен)</h2></div>";
                 } elseif ($row->status == 3) {
                     echo "(Подтвержден)</h2></div>";
-                } else {
-                    echo "(В корзине)</h2></div>";
                 }
             };
             echo "<div class='item2'><h2>$row->products_name</h2>";

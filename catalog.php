@@ -17,8 +17,14 @@ session_start();
     include 'php/nav.php';
     nav('catalog.php');
     include 'php/db.php';
+    if ($_SESSION['login'] == 'Admin') {
+        echo  "<article  class='new'>";
+        echo "<form action=''>";
+        echo "<input type='button' value='Добавить новый товар' class='button'>";
+        echo "</form></article>";
+    };
     $result = mysqli_query($con, "SELECT * FROM `products` ORDER BY  `timestamp` DESC");
-    echo "<section class='catalog'>";
+    echo "<section class='catalog gridbox'>";
     while ($row = mysqli_fetch_object($result)) {
         echo  "<article class='products'>";
         echo "<h2>$row->name</h2>";
@@ -32,7 +38,12 @@ session_start();
         echo "<p>Добавлено: <b>$row->timestamp</b></p>";
         echo "<form action=''>";
         echo "<input type='hidden' value=$row->id>";
-        echo "<input type='button' value='В корзину' class='button'>";
+        if ($_SESSION['login'] == 'Admin') {
+            echo "<input type='button' value='Редактировать' class='button'>";
+            echo "<input type='button' value='Удалить' class='button'>";
+        } else {
+            echo "<input type='button' value='В корзину' class='button'>";
+        }
         echo "</form></article>";
     };
     echo "</section>";

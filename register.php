@@ -18,18 +18,20 @@ session_start();
     include 'php/nav.php';
     nav('register.php');
     ?>
-    <form action="php/registration.php" method="post" id="regform">
-        <input type="text" required placeholder="Фамилия" name="surname" id="surname" class="validate">
-        <input type="text" required placeholder="Имя" name="name" id="name" class="validate">
-        <input type="text" required placeholder="Отчество" name="patronymic" id="patronymic" class="validate">
-        <input type="text" required placeholder="Логин" name="login" id="login" class="validate">
-        <input type="email" required placeholder="email" name="email" id="email" class="validate">
-        <input type="password" required placeholder="Пароль" name="password" id="password" class="validate">
-        <input type="password" required placeholder="Повтор пароля" name="confirm" id="confirm" class="validate">
-        <label><input type="checkbox" id="check"> Согласие с правилами</label>
-        <button class="button">Зарегистрироваться</button>
-        <p class="error" id="error"></p>
-    </form>
+    <section class="gridbox">
+        <form action="php/registration.php" method="post" id="regform" class="form">
+            <input type="text" required placeholder="Фамилия" name="surname" id="surname" class="validate">
+            <input type="text" required placeholder="Имя" name="name" id="name" class="validate">
+            <input type="text" required placeholder="Отчество" name="patronymic" id="patronymic" class="validate">
+            <input type="text" required placeholder="Логин" name="login" id="login" class="validate">
+            <input type="email" required placeholder="email" name="email" id="email" class="validate">
+            <input type="password" required placeholder="Пароль" name="password" id="password" class="validate">
+            <input type="password" required placeholder="Повтор пароля" name="confirm" id="confirm" class="validate">
+            <label><input type="checkbox" id="check"> Согласие с правилами</label>
+            <button class="button">Зарегистрироваться</button>
+            <p class="error" id="error"></p>
+        </form>
+    </section>
 </body>
 
 </html>

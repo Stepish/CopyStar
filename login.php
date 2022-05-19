@@ -17,17 +17,19 @@ session_start();
     include 'php/nav.php';
     nav('login.php');
     ?>
-    <form action="php/loginaction.php" method="post" id="loginform">
-        <input type="text" placeholder="Логин" name="login" required class="validate" id="login">
-        <input type="password" placeholder="Пароль" name="password" required class="validate" id="password">
-        <button class="button">Авторизоваться</button>
-        <?php
-        if (isset($_GET["error"])) {
-            $error = $_GET["error"];
-            echo "<p class='error' id='error'>$error</p>";
-        }
-        ?>
-    </form>
+    <section class="gridbox">
+        <form action="php/loginaction.php" method="post" id="loginform" class="form">
+            <input type="text" placeholder="Логин" name="login" required class="validate" id="login">
+            <input type="password" placeholder="Пароль" name="password" required class="validate" id="password">
+            <button class="button">Авторизоваться</button>
+            <?php
+            if (isset($_GET["error"])) {
+                $error = $_GET["error"];
+                echo "<p class='error' id='error'>$error</p>";
+            }
+            ?>
+        </form>
+    </section>
 </body>
 
 </html>
