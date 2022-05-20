@@ -17,11 +17,13 @@ session_start();
     include 'php/nav.php';
     nav('catalog.php');
     include 'php/db.php';
-    if ($_SESSION['login'] == 'Admin') {
-        echo  "<article  class='new'>";
-        echo "<form action=''>";
-        echo "<input type='button' value='Добавить новый товар' class='button'>";
-        echo "</form></article>";
+    if (!isset($_SESSION)) {
+        if ($_SESSION['login'] == 'Admin') {
+            echo  "<article  class='new'>";
+            echo "<form action=''>";
+            echo "<input type='button' value='Добавить новый товар' class='button'>";
+            echo "</form></article>";
+        };
     };
     $result = mysqli_query($con, "SELECT * FROM `products` ORDER BY  `timestamp` DESC");
     echo "<section class='catalog gridbox'>";
@@ -38,12 +40,14 @@ session_start();
         echo "<p>Добавлено: <b>$row->timestamp</b></p>";
         echo "<form action=''>";
         echo "<input type='hidden' value=$row->id>";
-        if ($_SESSION['login'] == 'Admin') {
-            echo "<input type='button' value='Редактировать' class='button'>";
-            echo "<input type='button' value='Удалить' class='button'>";
-        } else {
-            echo "<input type='button' value='В корзину' class='button'>";
-        }
+        if (!empty($_SESSION)) {
+            if ($_SESSION['login'] == 'Admin') {
+                echo "<input type='button' value='Редактировать' class='button'>";
+                echo "<input type='button' value='Удалить' class='button'>";
+            } else {
+                echo "<input type='button' value='В корзину' class='button'>";
+            };
+        };
         echo "</form></article>";
     };
     echo "</section>";

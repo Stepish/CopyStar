@@ -141,7 +141,7 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
+}
 
 form>* {
     padding: 0.5vw;
@@ -194,7 +194,12 @@ form>* {
 
     grid-column: span 3;
 }
+
 /* Администрирование */
-.newcategory{
+.newcategory {
     grid-column: span 12;
+}
+
+.category {
+    grid-column: 4/10;
 }
