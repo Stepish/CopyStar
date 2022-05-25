@@ -9,6 +9,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/slider.js" defer></script>
     <title>CopyStar</title>
 </head>
 
@@ -20,7 +21,7 @@ session_start();
     <h2>Новинки компании</h2>
     <section class="new flexbox">
         <img src="image/left.png" alt="left" id="left">
-        <div class="slider"></div>
+        <div class="slider" id='slider'></div>
         <img src="image/right.png" alt="right" id="right">
     </section>
     <?php
