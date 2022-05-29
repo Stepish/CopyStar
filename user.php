@@ -18,7 +18,7 @@ session_start();
     nav('user.php');
     if (!empty($_SESSION)) {
         include 'php/db.php';
-        $sql = "SELECT orders.id,orders.name AS orders_name,orders.status,custom_products.countnumber,products.name AS products_name,products.photo,products.price,products.country,products.year,products.model,products.timestamp,products.countnumbers,categories.name AS categories_name
+        $sql = "SELECT orders.id,orders.name AS orders_name,orders.status,orders.cause,custom_products.countnumber,products.name AS products_name,products.photo,products.price,products.country,products.year,products.model,products.timestamp,products.countnumbers,categories.name AS categories_name
         FROM `orders`,`products`,`custom_products`,`categories`
         WHERE orders.id=`order_id` 
         AND products.id=`product_id` 
@@ -27,7 +27,7 @@ session_start();
         AND orders.status>0
         ORDER BY orders.id";
         if ($_SESSION['login'] == 'Admin') {
-            $sql = "SELECT orders.id,orders.name AS orders_name,orders.status,custom_products.countnumber,products.name AS products_name,products.photo,products.price,products.country,products.year,products.model,products.timestamp,products.countnumbers,categories.name AS categories_name
+            $sql = "SELECT orders.id,orders.name AS orders_name,orders.status,orders.cause,custom_products.countnumber,products.name AS products_name,products.photo,products.price,products.country,products.year,products.model,products.timestamp,products.countnumbers,categories.name AS categories_name
             FROM `orders`,`products`,`custom_products`,`categories`
             WHERE orders.id=`order_id` 
             AND products.id=`product_id` 
@@ -45,19 +45,20 @@ session_start();
                 echo "<div class='item1'><h2>Заказ: $row->orders_name";
                 $order_name = $row->orders_name;
                 if ($row->status == 1) {
-                    echo "(Новый)</h2>";
-                    echo "<form action='' name='order'>";
-                    echo "<input type='hidden' value=$row->id>";
-                    echo "<input type='button' value='Удалить' class='button'>";
+                    echo " (Новый)</h2>";
+                    echo "<form action='php/functional.php' method='post'>";
                     if ($_SESSION['login'] == 'Admin') {
-                        echo "<input type='button' value='Отменить' class='button'>";
-                        echo "<input type='button' value='Подтвердить' class='button'>";
+                        echo "<input type='text' required placeholder='Причина' name='cause' id='cause' class='validate'>";
+                        echo "<button class='button' name='cancel_order' value='$row->id'>Отменить</button>";
+                        echo "<button class='button' name='confirm_order' value='$row->id'>Подтвердить</button>";
+                    } else {
+                        echo "<button class='button' name='delete_order' value='$row->id'>Удалить</button>";
                     };
                     echo "</form></div>";
                 } elseif ($row->status == 2) {
-                    echo "(Отменен)</h2></div>";
+                    echo " (Отменен: $row->cause)</h2></div>";
                 } elseif ($row->status == 3) {
-                    echo "(Подтвержден)</h2></div>";
+                    echo " (Подтвержден: $row->cause)</h2></div>";
                 }
             };
             echo "<div class='item2'><h2>$row->products_name</h2>";

@@ -38,12 +38,13 @@ session_start();
         echo "<p>Категория: <b>$row->category</b></p>";
         echo "<p>Количество: <b>$row->countnumbers</b></p>";
         echo "<p>Добавлено: <b>$row->timestamp</b></p>";
-        echo "<form action=''>";
-        echo "<input type='hidden' value=$row->id>";
+        echo "<form action='php/functional.php' method='post'>";
+        echo "<input type='hidden' name='hidden' value='catalog'>";
         if (!empty($_SESSION)) {
             if ($_SESSION['login'] == 'Admin') {
-                echo "<input type='button' value='Редактировать' class='button'>";
-                echo "<input type='button' value='Удалить' class='button'>";
+                // echo "<input type='button' value='Редактировать' class='button'>";
+                // echo "<input type='button' value='Удалить' class='button'>";
+                echo "Будут админские кнопки";
             } else {
                 echo "<input type='button' value='В корзину' class='button'>";
             };

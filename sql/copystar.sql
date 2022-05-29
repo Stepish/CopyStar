@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 18 2022 г., 23:20
+-- Время создания: Май 30 2022 г., 00:00
 -- Версия сервера: 5.7.33
 -- Версия PHP: 7.4.21
 
@@ -86,6 +86,7 @@ CREATE TABLE `orders` (
   `user_id` int(10) NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
+  `cause` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `time` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -93,11 +94,11 @@ CREATE TABLE `orders` (
 -- Дамп данных таблицы `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `name`, `status`, `time`) VALUES
-(1, 2, '12345-001', 1, '2022-05-16 20:18:34'),
-(2, 2, '12346-023', 2, '2022-05-17 20:18:34'),
-(3, 2, '12345-8456', 0, '2022-05-16 17:18:34'),
-(4, 2, '12346-6457', 3, '2022-05-17 17:18:34');
+INSERT INTO `orders` (`id`, `user_id`, `name`, `status`, `cause`, `time`) VALUES
+(1, 2, '12345-001', 1, '', '2022-05-16 20:18:34'),
+(2, 2, '12346-023', 2, '', '2022-05-17 20:18:34'),
+(3, 2, '12345-8456', 0, '', '2022-05-16 17:18:34'),
+(4, 2, '12346-6457', 3, '', '2022-05-17 17:18:34');
 
 -- --------------------------------------------------------
 

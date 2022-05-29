@@ -27,6 +27,7 @@ session_start();
         AND orders.status=0
         ORDER BY orders.id";
         $result = mysqli_query($con, $sql);
+        $con->close();
         echo "<section class='orders'>";
         $order_name = "";
         while ($row = mysqli_fetch_object($result)) {
@@ -34,11 +35,10 @@ session_start();
             if ($order_name != $row->orders_name) {
                 echo "<div class='item1'><h2>Заказ: $row->orders_name";
                 $order_name = $row->orders_name;
-                echo "(В корзине)</h2>";
-                echo "<form action='' name='order'>";
-                echo "<input type='hidden' value=$row->id>";
-                echo "<input type='button' value='Оформить заказ' class='button'>";
-                echo "<input type='button' value='Очистить корзину' class='button'>";
+                echo "</h2>";
+                echo "<form action='php/functional.php' method='post'>";
+                echo "<button class='button' name='new_order' value='$row->id'>Сформировать заказ</button>";
+                echo "<button class='button' name='delete_order' value='$row->id'>Очистить корзину</button>";
                 echo "</form></div>";
             };
             echo "<div class='item2'><h2>$row->products_name</h2>";

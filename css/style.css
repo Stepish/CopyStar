@@ -21,7 +21,7 @@ body {
     background-color: #EBEBEB;
 }
 
-header, nav, section, h1, h2 {
+header, nav, section, h1 {
     margin: 2vw 0;
 }
 
@@ -196,10 +196,7 @@ form>* {
 }
 
 /* Администрирование */
-.newcategory {
-    grid-column: span 12;
-}
 
-.category {
+.newcategory, .category {
     grid-column: 4/10;
 }

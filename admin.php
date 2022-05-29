@@ -13,41 +13,54 @@ session_start();
 </head>
 
 <body>
+    <form action="">
+        <input type="text">
+    </form>
     <?php
     include 'php/nav.php';
     nav('admin.php');
     if ($_SESSION['login'] == 'Admin') {
+        echo "<section class='categories gridbox'>";
+        echo "<div class='newcategory'>";
+        echo "<form action='php/functional.php' method='post'>";
+        echo "<input type='text' required placeholder='Наименование категории' name='categories' id='categories' class='validate'>";
+        echo "<button class='button' name='new_categories' value='new'>Добавить новую категорию</button>";
+        echo "</form></div>";
+        echo "</div>";
         include 'php/db.php';
         $sql = "SELECT * FROM `categories`";
         $result = mysqli_query($con, $sql);
-        echo "<section class='categories gridbox'>";
-        echo "<div class='newcategory'>";
-        echo "<form action='' name='order'>";
-        echo "<input type='button' value='Добавить новую категорию' class='button'>";
-        echo "</form></div>";
-        echo "</div>";
+        $con->close();
         while ($row = mysqli_fetch_object($result)) {
             echo  "<div class='category flexbox'>";
             echo "<h2>$row->name</h2>";
-            echo "<form action='' name='order'>";
-            echo "<input type='hidden' value=$row->id>";
-            echo "<input type='button' value='Удалить' class='button'>";
+            echo "<form action='php/functional.php' method='post'>";
+            echo "<button class='button' name='delete_categories' value='$row->id'>Удалить</button>";
             echo "</form></div>";
             echo "</div>";
         };
         echo "</section>";
-        echo "<section class='gridbox'>
-        <form action='php/registration.php' method='post' id='regform' class='form'>
-        <button class='button'>Добавить товар</button>    
-        <input type='text' required placeholder='Фамилия' name='surname' id='surname' class='validate'>
-            <input type='text' required placeholder='Имя' name='name' id='name' class='validate'>
-            <input type='text' required placeholder='Отчество' name='patronymic' id='patronymic' class='validate'>
-            <input type='text' required placeholder='Логин' name='login' id='login' class='validate'>
-            <input type='email' required placeholder='email' name='email' id='email' class='validate'>
-            
-            <p class='error' id='error'></p>
-        </form>
-    </section>";
+        //     echo "<section class='gridbox'>
+        //     <form action='' method='post' id='' class='form'>
+        //     <input type='text' required placeholder='Наименование' name='name' id='name' class='validate'>
+        //     <input type='text' required placeholder='Фотография' name='photo' id='photo' class='validate'>
+        //     <input type='text' required placeholder='Цена' name='price' id='price' class='validate'>
+        //     <input type='text' required placeholder='Страна' name='country' id='country' class='validate'>
+        //     <input type='date' required placeholder='Год выпуска' name='year' id='year' class='validate'>
+        //     <input type='text' required placeholder='Модель' name='model' id='model' class='validate'>
+        //     <p>Выбери категорию</p>
+        //     <select name='select' size='1'>";
+        //     $sql = "SELECT * FROM `categories`";
+        //     $result = mysqli_query($con, $sql);
+        //     while ($row = mysqli_fetch_object($result)) {
+        //         echo "<option name='categories' value='$row->id'>" . $row->name . "</option>";
+        //     };
+        //     echo "</select>
+        //     <input type='text' required placeholder='Количество' name='countnumbers' id='countnumbers' class='validate'>
+        //     <button class='button'>Добавить товар</button>  
+        //     <p class='error' id='error'></p>
+        //     </form>
+        // </section>";
     } else {
         echo "Вы должны быть администратором";
     }

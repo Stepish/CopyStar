@@ -32,8 +32,17 @@ session_start();
         echo  "<article class='new'>";
         echo "<h2>" . $row->name . "</h2>";
         echo "<a href='product.php?id=$row->id'><img src='image/" . $row->photo . "' alt='product' class='images'></a>";
-        echo "<form action='php/product.php' method='post'>";
-        echo "<button class='button' name='basket' value='$row->id'>В корзину</button>";
+        echo "<form action='php/functional.php' method='post'>";
+        echo "<input type='hidden' name='hidden' value='index'>";
+        if (!empty($_SESSION)) {
+            if ($_SESSION['login'] == 'Admin') {
+                // echo "<input type='button' value='Редактировать' class='button'>";
+                // echo "<input type='button' value='Удалить' class='button'>";
+                echo "Будут админские кнопки";
+            } else {
+                echo "<button class='button' name='basket' value='$row->id'>В корзину</button>";
+            };
+        };
         echo "</form></article>";
     };
     echo "</section>";

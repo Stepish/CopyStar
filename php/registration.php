@@ -12,6 +12,6 @@ $password = md5($_POST['password']);
 include 'db.php';
 $zapros = "INSERT INTO `users` (`name`,`surname`,`patronymic`, `login`, `email`, `password`) 
 VALUE('$name', '$surname','$patronymic','$login', '$email', '$password')";
-$con->query($zapros) or die('$con->error');
+$con->query($zapros) or die($con->error);
 $con->close();
 header("Location: ../index.php");

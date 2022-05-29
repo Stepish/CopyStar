@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* Общие настройки */
+@font-face {
+    font-family: myfont;
+    src: url("../fonts/Comfortaa-Regular.ttf");
+}
+
+
+body {
+    width: 90vw;
+    margin: auto;
+    font-family: myfont;
+    font-size: 1.6vw;
+    background-color: #EBEBEB;
+}
+
+#orders {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2vw 0;
+}
+
+#orders img {
+    width: 15vw;
+}
+
+#button {
+    padding: 2vw 5vw;
+    width: 20vw;
+    background-color: yellow;
+}
