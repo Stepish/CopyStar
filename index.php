@@ -33,7 +33,6 @@ session_start();
         echo "<h2>" . $row->name . "</h2>";
         echo "<a href='product.php?id=$row->id'><img src='image/" . $row->photo . "' alt='product' class='images'></a>";
         echo "<form action='php/functional.php' method='post'>";
-        echo "<input type='hidden' name='hidden' value='index'>";
         if (!empty($_SESSION)) {
             if ($_SESSION['login'] == 'Admin') {
                 // echo "<input type='button' value='Редактировать' class='button'>";

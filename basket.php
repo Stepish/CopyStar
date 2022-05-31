@@ -18,7 +18,7 @@ session_start();
     nav('basket.php');
     if (!empty($_SESSION)) {
         include 'php/db.php';
-        $sql = "SELECT orders.id,orders.name AS orders_name,orders.status,custom_products.countnumber,products.name AS products_name,products.photo,products.price,products.country,products.year,products.model,products.timestamp,products.countnumbers,categories.name AS categories_name
+        $sql = "SELECT orders.id,orders.name AS orders_name,orders.status,custom_products.countnumber,products.id AS products_id,products.name AS products_name,products.photo,products.price,products.country,products.year,products.model,products.timestamp,products.countnumbers,categories.name AS categories_name
         FROM `orders`,`products`,`custom_products`,`categories`
         WHERE orders.id=`order_id` 
         AND products.id=`product_id` 
@@ -42,7 +42,7 @@ session_start();
                 echo "</form></div>";
             };
             echo "<div class='item2'><h2>$row->products_name</h2>";
-            echo "<a href='product.php?id=$row->id'><img src='image/$row->photo' alt='product' class='images'></a></div>";
+            echo "<a href='product.php?id=$row->products_id'><img src='image/$row->photo' alt='product' class='images'></a></div>";
             echo "<div class='item3'><p>Производитель: <b>$row->country</b></p>";
             echo "<p>Производство: <b>$row->year</b></p>";
             echo "<p>Модель: <b>$row->model</b></p>";

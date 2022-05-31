@@ -59,20 +59,27 @@ if (isset($_POST['delete_categories'])) {
     $con->close();
     header("Location: ../admin.php");
 };
-if (isset($_POST['basket']) and $_POST['hidden'] = 'index') {
+if (isset($_POST['basket'])) {
     $basket = ($_POST['basket']);
     $user = $_SESSION['userid'];
     $name = rand(50000, 55000);
     $status = 0;
     $date = date("Y-m-d H:i:s");
     include 'db.php';
-    $sql = "INSERT INTO `orders` (`user_id`, `name`, `status`, `cause`, `time`) VALUES ('$user', '$name', '$status', '', '$date')";
-    $con->query($sql) or die($con->error);
-    $sql = "SELECT max(id) AS `order_id` FROM `orders`";
+    $sql = "SELECT `id` FROM `orders` WHERE `user_id`= $user AND `status`= 0";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_object($result);
-    $order_id = $row->order_id;
-    $sql = "INSERT INTO `custom_products` (`order_id`, `product_id`, `countnumber`) VALUES ('$order_id ', '$basket', 1)";
+    if ($result->num_rows != 0) {
+        $order_id =  $row->id;
+    } else {
+        $sql = "SELECT max(id) AS `id` FROM `orders`";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_object($result);
+        $order_id =  $row->id + 1;
+        $sql = "INSERT INTO `orders` (`id`,`user_id`, `name`, `status`, `cause`, `time`) VALUES ('$order_id', '$user', '$name', '$status', '', '$date')";
+        $con->query($sql) or die($con->error);
+    }
+    $sql = "INSERT INTO `custom_products` (`order_id`, `product_id`, `countnumber`) VALUES ('$order_id', '$basket', 1)";
     $con->query($sql) or die($con->error);
     $con->close();
     header("Location: ../basket.php");

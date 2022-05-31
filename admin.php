@@ -13,9 +13,6 @@ session_start();
 </head>
 
 <body>
-    <form action="">
-        <input type="text">
-    </form>
     <?php
     include 'php/nav.php';
     nav('admin.php');
@@ -40,27 +37,30 @@ session_start();
             echo "</div>";
         };
         echo "</section>";
-        //     echo "<section class='gridbox'>
-        //     <form action='' method='post' id='' class='form'>
-        //     <input type='text' required placeholder='Наименование' name='name' id='name' class='validate'>
-        //     <input type='text' required placeholder='Фотография' name='photo' id='photo' class='validate'>
-        //     <input type='text' required placeholder='Цена' name='price' id='price' class='validate'>
-        //     <input type='text' required placeholder='Страна' name='country' id='country' class='validate'>
-        //     <input type='date' required placeholder='Год выпуска' name='year' id='year' class='validate'>
-        //     <input type='text' required placeholder='Модель' name='model' id='model' class='validate'>
-        //     <p>Выбери категорию</p>
-        //     <select name='select' size='1'>";
-        //     $sql = "SELECT * FROM `categories`";
-        //     $result = mysqli_query($con, $sql);
-        //     while ($row = mysqli_fetch_object($result)) {
-        //         echo "<option name='categories' value='$row->id'>" . $row->name . "</option>";
-        //     };
-        //     echo "</select>
-        //     <input type='text' required placeholder='Количество' name='countnumbers' id='countnumbers' class='validate'>
-        //     <button class='button'>Добавить товар</button>  
-        //     <p class='error' id='error'></p>
-        //     </form>
-        // </section>";
+        echo "<section class='gridbox'>
+            <form action='php/edit.php' method='post' class='form' enctype='multipart/form-data'>
+            <input type='text' required placeholder='Наименование' name='name' id='name' class='validate'>
+            <label for='photo'>Фотография продукта: </label>
+            <input  type='file' multiple accept='image/*,image/jpeg' required name='photo' id='photo' class='validate'>
+            <input type='text' required placeholder='Цена' name='price' id='price' class='validate'>
+            <input type='text' required placeholder='Страна' name='country' id='country' class='validate'>
+            <input type='date' required placeholder='Год выпуска' name='year' id='year' class='validate'>
+            <input type='text' required placeholder='Модель' name='model' id='model' class='validate'>
+            <p>Выбери категорию</p>
+            <select name='select' size='1'>";
+        include 'php/db.php';
+        $sql = "SELECT * FROM `categories`";
+        $result = mysqli_query($con, $sql);
+        $con->close();
+        while ($row = mysqli_fetch_object($result)) {
+            echo "<option name='categories' value='$row->id'>" . $row->name . "</option>";
+        };
+        echo "</select>
+            <input type='text' required placeholder='Количество' name='countnumbers' id='countnumbers' class='validate'>
+            <button class='button' name='edit' value='12345'>Добавить товар</button>  
+            <p class='error' id='error'></p>
+            </form>
+        </section>";
     } else {
         echo "Вы должны быть администратором";
     }

@@ -54,7 +54,7 @@ p {
 }
 
 .images {
-    width: 100%;
+    width: 90%;
     display: block;
     margin: 1vw auto;
 }
@@ -89,7 +89,7 @@ header img {
 .slider {
     width: 70vw;
     height: 54vw;
-    background-image: url('../image/image.png');
+    background-image: url('../image/noimage.png');
     background-size: contain;
 }
 
